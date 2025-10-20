@@ -1,0 +1,83 @@
+{
+  "_metadata": {
+    "major_version": 1,
+    "minor_version": 1
+  },
+  "display_information": {
+    "name": "d0-bot",
+    "description": "A data science assistant."
+  },
+  "features": {
+    "app_home": {
+      "home_tab_enabled": true,
+      "messages_tab_enabled": true,
+      "messages_tab_read_only_enabled": false
+    },
+    "bot_user": {
+      "display_name": "d0-bot",
+      "always_online": true
+    },
+    "shortcuts": [
+      {
+        "name": "Run sample shortcut",
+        "type": "global",
+        "callback_id": "sample_shortcut_id",
+        "description": "Runs a sample shortcut"
+      }
+    ],
+    "slash_commands": [
+      {
+        "command": "/sample-command",
+        "description": "Runs a sample command",
+        "should_escape": false,
+        "url": "https://1701920d9688.ngrok-free.app/api/slack/events"
+      }
+    ],
+    "assistant_view": {
+      "assistant_description": "A data science assistant."
+    }
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": [
+        "channels:history",
+        "chat:write",
+        "commands",
+        "app_mentions:read",
+        "assistant:write",
+        "reactions:write",
+        "reactions:read",
+        "mpim:history",
+        "im:history",
+        "users:read",
+        "groups:history",
+        "files:write",
+        "files:read"
+      ]
+    }
+  },
+  "settings": {
+    "event_subscriptions": {
+      "request_url": "https://1701920d9688.ngrok-free.app/api/slack/events",
+      "bot_events": [
+        "app_home_opened",
+        "message.channels",
+        "app_mention",
+        "reaction_added",
+        "reaction_removed",
+        "assistant_thread_context_changed",
+        "assistant_thread_started",
+        "message.groups",
+        "message.im",
+        "message.mpim"
+      ]
+    },
+    "interactivity": {
+      "is_enabled": true,
+      "request_url": "https://1701920d9688.ngrok-free.app/api/slack/events"
+    },
+    "org_deploy_enabled": true,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": false
+  }
+}

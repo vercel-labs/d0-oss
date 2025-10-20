@@ -1,0 +1,11 @@
+
+> @d0/web@0.1.0 dev /Users/qua/vercel/d0/apps/web
+> next dev -p 3000
+
+   [1m[38;2;173;127;168m▲ Next.js 15.5.4[39m[22m
+   - Local:        http://localhost:3000
+   - Network:      http://10.0.0.56:3000
+   - Environments: .env
+
+ [32m[1m✓[22m[39m Starting...
+[?25h

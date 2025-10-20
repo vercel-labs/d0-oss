@@ -1,0 +1,106 @@
+name: People
+type: fact_table
+table: main.people
+grain: one row per person
+description: Employee information including demographics and job details
+common_questions:
+  - What is the average salary by department?
+  - How many employees work in each company?
+  - Who are the highest paid employees?
+
+dimensions:
+  - name: id
+    sql: id
+    type: number
+    description: Unique identifier for the person
+
+  - name: first_name
+    sql: first_name
+    type: string
+    description: Person's first name
+
+  - name: last_name
+    sql: last_name
+    type: string
+    description: Person's last name
+
+  - name: email
+    sql: email
+    type: string
+    description: Email address
+
+  - name: company_id
+    sql: company_id
+    type: number
+    description: Foreign key to Company table
+
+  - name: job_title
+    sql: job_title
+    type: string
+    description: Current job title
+
+  - name: department
+    sql: department
+    type: string
+    description: Department
+    sample_values: [Engineering, Sales, Marketing, HR, Finance, Operations]
+
+  - name: salary
+    sql: salary
+    type: number
+    description: Annual salary in USD
+
+time_dimensions:
+  - name: hire_date
+    sql: hire_date
+    type: time
+    description: Date when person was hired
+
+  - name: birth_date
+    sql: birth_date
+    type: time
+    description: Person's date of birth
+
+  - name: created_at
+    sql: created_at
+    type: time
+    description: Record creation timestamp
+
+measures:
+  - name: count
+    sql: id
+    type: count_distinct
+    description: Count of people
+
+  - name: total_salary
+    sql: salary
+    type: sum
+    description: Total salary across people
+
+  - name: avg_salary
+    sql: salary
+    type: avg
+    description: Average salary per person
+
+  - name: min_salary
+    sql: salary
+    type: min
+    description: Minimum salary
+
+  - name: max_salary
+    sql: salary
+    type: max
+    description: Maximum salary
+
+joins:
+  - target_entity: Company
+    relationship: many_to_one
+    join_columns:
+      from: company_id
+      to: id
+
+  - target_entity: Accounts
+    relationship: one_to_many
+    join_columns:
+      from: id
+      to: account_manager_id

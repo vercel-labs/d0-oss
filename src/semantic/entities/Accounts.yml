@@ -1,0 +1,117 @@
+name: Accounts
+type: fact_table
+table: main.accounts
+grain: one row per customer account
+description: Customer account information including status and financial details
+common_questions:
+  - What is the total monthly recurring revenue?
+  - How many accounts are Active vs Inactive?
+  - Which account managers manage the most accounts?
+
+dimensions:
+  - name: id
+    sql: id
+    type: number
+    description: Unique identifier for the account
+
+  - name: account_number
+    sql: account_number
+    type: string
+    description: Unique account number
+
+  - name: company_id
+    sql: company_id
+    type: number
+    description: Foreign key to Company table (customer company)
+
+  - name: account_manager_id
+    sql: account_manager_id
+    type: number
+    description: Foreign key to People table (account manager)
+
+  - name: status
+    sql: status
+    type: string
+    description: Account status
+    sample_values: [Active, Inactive, Suspended, Closed]
+
+  - name: account_type
+    sql: account_type
+    type: string
+    description: Type of account
+    sample_values: [Enterprise, Business, Starter]
+
+  - name: monthly_value
+    sql: monthly_value
+    type: number
+    description: Monthly recurring revenue from this account
+
+  - name: total_revenue
+    sql: total_revenue
+    type: number
+    description: Total lifetime revenue from this account
+
+  - name: is_active
+    sql: status = 'Active'
+    type: boolean
+    description: Indicates if the account is currently active
+
+time_dimensions:
+  - name: contract_start_date
+    sql: contract_start_date
+    type: time
+    description: When the contract started
+
+  - name: contract_end_date
+    sql: contract_end_date
+    type: time
+    description: When the contract ends
+
+  - name: created_at
+    sql: created_at
+    type: time
+    description: Record creation timestamp
+
+measures:
+  - name: count
+    sql: id
+    type: count_distinct
+    description: Count of accounts
+
+  - name: monthly_value
+    sql: monthly_value
+    type: sum
+    description: Monthly recurring revenue (sum)
+
+  - name: total_monthly_value
+    sql: monthly_value
+    type: sum
+    description: Total monthly recurring revenue
+
+  - name: total_revenue
+    sql: total_revenue
+    type: sum
+    description: Total lifetime revenue across accounts
+
+  - name: avg_monthly_value
+    sql: monthly_value
+    type: avg
+    description: Average monthly value per account
+
+  - name: avg_account_revenue
+    sql: total_revenue
+    type: avg
+    description: Average lifetime revenue per account
+
+joins:
+  - target_entity: Company
+    relationship: many_to_one
+    join_columns:
+      from: company_id
+      to: id
+
+  - target_entity: People
+    relationship: many_to_one
+    join_columns:
+      from: account_manager_id
+      to: id

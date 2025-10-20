@@ -1,0 +1,96 @@
+name: Company
+type: fact_table
+table: main.companies
+grain: one row per company
+description: Company information including industry, size, and location
+common_questions:
+  - How many companies are in each industry?
+  - What is the average revenue by industry?
+  - Which companies have the most employees?
+
+dimensions:
+  - name: id
+    sql: id
+    type: number
+    description: Unique identifier for the company
+
+  - name: name
+    sql: name
+    type: string
+    description: Company name
+
+  - name: industry
+    sql: industry
+    type: string
+    description: Industry sector
+    sample_values: [Technology, Finance, Healthcare, Retail, Manufacturing]
+
+  - name: employee_count
+    sql: employee_count
+    type: number
+    description: Number of employees
+
+  - name: revenue
+    sql: revenue
+    type: number
+    description: Annual revenue in USD
+
+  - name: founded_year
+    sql: founded_year
+    type: number
+    description: Year the company was founded
+
+  - name: country
+    sql: country
+    type: string
+    description: Country where company is headquartered
+
+  - name: city
+    sql: city
+    type: string
+    description: City where company is headquartered
+
+time_dimensions:
+  - name: created_at
+    sql: created_at
+    type: time
+    description: Record creation timestamp
+
+measures:
+  - name: count
+    sql: id
+    type: count_distinct
+    description: Count of companies
+
+  - name: total_revenue
+    sql: revenue
+    type: sum
+    description: Total revenue across companies
+
+  - name: avg_revenue
+    sql: revenue
+    type: avg
+    description: Average revenue per company
+
+  - name: total_employees
+    sql: employee_count
+    type: sum
+    description: Total number of employees across companies
+
+  - name: avg_employees
+    sql: employee_count
+    type: avg
+    description: Average number of employees per company
+
+joins:
+  - target_entity: People
+    relationship: one_to_many
+    join_columns:
+      from: id
+      to: company_id
+
+  - target_entity: Accounts
+    relationship: one_to_many
+    join_columns:
+      from: id
+      to: company_id
