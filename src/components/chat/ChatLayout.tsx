@@ -54,12 +54,12 @@ import { Loader } from "@/components/ai-elements/loader";
 
 const models = [
   {
-    name: "Moonshot Kimi K2",
-    value: "moonshotai/kimi-k2-0905",
-  },
-  {
     name: "GPT-5",
     value: "openai/gpt-5",
+  },
+  {
+    name: "Moonshot Kimi K2",
+    value: "moonshotai/kimi-k2-0905",
   },
   {
     name: "GLM 4.6",
