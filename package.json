@@ -1,5 +1,5 @@
 {
-  "name": "d0-oss",
+  "name": "oss-data-analyst",
   "version": "0.1.0",
   "private": false,
   "type": "module",
@@ -17,12 +17,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/vercel/d0-oss.git"
+    "url": "https://github.com/vercel/oss-data-analyst.git"
   },
   "bugs": {
-    "url": "https://github.com/vercel/d0-oss/issues"
+    "url": "https://github.com/vercel/oss-data-analyst/issues"
   },
-  "homepage": "https://github.com/vercel/d0-oss#readme",
+  "homepage": "https://github.com/vercel/oss-data-analyst#readme",
   "license": "MIT",
   "author": "Vercel",
   "scripts": {

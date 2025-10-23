@@ -8,7 +8,7 @@ let db: Database.Database | null = null;
  */
 export function getDatabase(): Database.Database {
   if (!db) {
-    const dbPath = join(process.cwd(), "data", "d0.db");
+    const dbPath = join(process.cwd(), "data", "oss-data-analyst.db");
     console.log(`[SQLite] Connecting to database at: ${dbPath}`);
     db = new Database(dbPath);
     db.pragma("foreign_keys = ON");
@@ -39,10 +39,15 @@ export async function executeSQL(sql: string): Promise<QueryResult> {
     if (isSelect) {
       const stmt = db.prepare(sql);
       const rows = stmt.all();
-      const columns = rows.length > 0 && rows[0] ? Object.keys(rows[0] as Record<string, unknown>) : [];
+      const columns =
+        rows.length > 0 && rows[0]
+          ? Object.keys(rows[0] as Record<string, unknown>)
+          : [];
 
       const executionTime = Date.now() - startTime;
-      console.log(`[SQLite] Query completed in ${executionTime}ms, returned ${rows.length} rows`);
+      console.log(
+        `[SQLite] Query completed in ${executionTime}ms, returned ${rows.length} rows`
+      );
 
       return {
         rows,
@@ -55,7 +60,9 @@ export async function executeSQL(sql: string): Promise<QueryResult> {
       const result = db.prepare(sql).run();
       const executionTime = Date.now() - startTime;
 
-      console.log(`[SQLite] Query completed in ${executionTime}ms, affected ${result.changes} rows`);
+      console.log(
+        `[SQLite] Query completed in ${executionTime}ms, affected ${result.changes} rows`
+      );
 
       return {
         rows: [],
@@ -66,7 +73,10 @@ export async function executeSQL(sql: string): Promise<QueryResult> {
     }
   } catch (error: any) {
     const executionTime = Date.now() - startTime;
-    console.error(`[SQLite] Query failed after ${executionTime}ms:`, error.message);
+    console.error(
+      `[SQLite] Query failed after ${executionTime}ms:`,
+      error.message
+    );
     throw new Error(`SQLite Error: ${error.message}`);
   }
 }
@@ -85,7 +95,9 @@ export function getSchema(): any[] {
 
   return tables.map((table) => {
     const columns = db.prepare(`PRAGMA table_info(${table.name})`).all();
-    const foreignKeys = db.prepare(`PRAGMA foreign_key_list(${table.name})`).all();
+    const foreignKeys = db
+      .prepare(`PRAGMA foreign_key_list(${table.name})`)
+      .all();
 
     return {
       table: table.name,

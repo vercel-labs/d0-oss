@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   description:
     "AI-powered text-to-SQL assistant for natural language data queries",
   icons: {
-    icon: "/d0.svg",
-    apple: "/d0.svg",
+    icon: "/oss-data-analyst.svg",
+    apple: "/oss-data-analyst.svg",
   },
 };
 

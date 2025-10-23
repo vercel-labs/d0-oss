@@ -1,6 +1,6 @@
-# Contributing to D0
+# Contributing to oss-data-analyst
 
-Thank you for your interest in contributing to D0! This document provides guidelines and instructions for contributing to the project.
+Thank you for your interest in contributing to oss-data-analyst! This document provides guidelines and instructions for contributing to the project.
 
 ## Code of Conduct
 
@@ -63,12 +63,12 @@ We follow conventional commit format:
 ## Project Structure
 
 ```
-d0-oss/
+oss-data-analyst/
 ├── src/
 │   ├── app/              # Next.js pages and API routes
 │   ├── components/       # React components
 │   ├── lib/             # Core agent logic
-│   │   ├── d0-agent-advanced.ts  # Main agent implementation
+│   │   ├── oss-data-analyst-agent-advanced.ts  # Main agent implementation
 │   │   ├── tools/       # Agent tools
 │   │   └── prompts/     # System prompts
 │   └── types/           # TypeScript types
@@ -83,7 +83,7 @@ d0-oss/
 1. Create tool in appropriate directory (`tools/planning`, `tools/building`, etc.)
 2. Define tool schema with clear descriptions
 3. Implement tool logic
-4. Add tool to phase configuration in `d0-agent-advanced.ts`
+4. Add tool to phase configuration in `oss-data-analyst-agent-advanced.ts`
 5. Update prompts if needed
 
 ### Modifying Prompts

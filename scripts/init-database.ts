@@ -1,7 +1,7 @@
 import Database from "better-sqlite3";
 import { join } from "path";
 
-const dbPath = join(process.cwd(), "data", "d0.db");
+const dbPath = join(process.cwd(), "data", "oss-data-analyst.db");
 
 console.log("🔧 Initializing SQLite database...");
 console.log(`📁 Database path: ${dbPath}`);

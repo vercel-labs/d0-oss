@@ -62,7 +62,7 @@ interface Message {
 }
 export type Phase = "planning" | "building" | "execution" | "reporting";
 
-export async function runD0({
+export async function runAgent({
   messages,
   prompt,
   model = "openai/gpt-5",

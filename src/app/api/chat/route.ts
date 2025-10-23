@@ -3,7 +3,7 @@
 export const runtime = "nodejs";
 
 import type { NextRequest } from "next/server";
-import { runD0 } from "@/lib/d0-agent-advanced";
+import { runAgent } from "@/lib/agent";
 
 type Phase = "planning" | "building" | "execution" | "reporting";
 
@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   try {
     const { messages, model } = await req.json();
 
-    const result = await runD0({ messages, model });
+    const result = await runAgent({ messages, model });
 
     return result.toUIMessageStreamResponse();
   } catch (err: unknown) {

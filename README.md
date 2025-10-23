@@ -1,6 +1,6 @@
-# d0 - Open Source AI Data Science Agent [Reference Architecture]
+# oss-data-analyst - Open Source AI Data Science Agent [Reference Architecture]
 
-d0 is an intelligent AI agent that converts natural language questions into SQL queries and provides data analysis. Built with the Vercel AI SDK, it features multi-phase reasoning (planning, building, execution, reporting) and streams results in real-time.
+oss-data-analyst is an intelligent AI agent that converts natural language questions into SQL queries and provides data analysis. Built with the Vercel AI SDK, it features multi-phase reasoning (planning, building, execution, reporting) and streams results in real-time.
 
 > **Note**: This is a reference architecture. The semantic catalog and schemas included are simplified examples for demonstration purposes. Production implementations should use your own data models and schemas.
 
@@ -26,8 +26,8 @@ d0 is an intelligent AI agent that converts natural language questions into SQL 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/vercel/d0-oss.git
-   cd d0-oss
+   git clone https://github.com/vercel/oss-data-analyst.git
+   cd oss-data-analyst
    ```
 
 2. **Install dependencies**
@@ -64,7 +64,7 @@ pnpm start
 
 ## Sample Schema
 
-This repository includes a sample database schema with three main entities to demonstrate d0's capabilities:
+This repository includes a sample database schema with three main entities to demonstrate oss-data-analyst's capabilities:
 
 ### **Companies**
 Represents organizations in your database. Each company has:
@@ -89,7 +89,7 @@ Represents individual employees or contacts within companies. Each person has:
 
 ## How It Works
 
-d0 uses a multi-phase agentic workflow:
+oss-data-analyst uses a multi-phase agentic workflow:
 
 1. **Planning Phase**
    - Analyzes natural language query
@@ -115,7 +115,7 @@ d0 uses a multi-phase agentic workflow:
    - Provides natural language explanations
    - Performs sanity checks on data
 
-## Extending d0
+## Extending oss-data-analyst
 
 ### Customizing Prompts
 
@@ -127,7 +127,7 @@ Modify system prompts in `src/lib/prompts/`:
 
 ## Example Queries
 
-Try asking d0 (using the sample database):
+Try asking oss-data-analyst (using the sample database):
 
 - "How many companies are in the Technology industry?"
 - "What is the average salary by department?"
@@ -140,7 +140,7 @@ Try asking d0 (using the sample database):
 
 The default setup uses SQLite for demonstration. To use with Snowflake or other databases:
 
-1. Update `src/lib/d0-agent-advanced.ts` to import from `./tools/execute` instead of `./tools/execute-sqlite`
+1. Update `src/lib/oss-data-analyst-agent-advanced.ts` to import from `./tools/execute` instead of `./tools/execute-sqlite`
 2. Configure your database credentials in `.env.local`
 3. Update the semantic catalog in `src/lib/semantic/` with your schema definitions
 
@@ -148,7 +148,7 @@ The default setup uses SQLite for demonstration. To use with Snowflake or other 
 
 **Database Not Found**
 - Run `pnpm initDatabase` to create and seed the database
-- Check that `data/d0.db` exists
+- Check that `data/oss-data-analyst.db` exists
 
 **AI Gateway API Errors**
 - Verify your API key is valid in `.env.local`

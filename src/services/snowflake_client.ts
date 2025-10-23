@@ -40,7 +40,7 @@ function getConnectionOptions() {
     schema: config.SNOWFLAKE_SCHEMA,
     warehouse: config.SNOWFLAKE_WAREHOUSE,
     role: config.SNOWFLAKE_ROLE,
-    application: config.SNOWFLAKE_APPLICATION ?? "d0-api",
+    application: config.SNOWFLAKE_APPLICATION ?? "oss-data-analyst-api",
     clientSessionKeepAlive: config.SNOWFLAKE_CLIENT_SESSION_KEEP_ALIVE ?? true,
   };
 }
@@ -88,7 +88,7 @@ async function initPool() {
     },
   } as SnowflakePool;
   console.warn(
-    "[snowflake] SDK pool not available; using single connection fallback",
+    "[snowflake] SDK pool not available; using single connection fallback"
   );
   return pool;
 }

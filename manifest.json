@@ -4,7 +4,7 @@
     "minor_version": 1
   },
   "display_information": {
-    "name": "d0-bot",
+    "name": "oss-data-analyst-bot",
     "description": "A data science assistant."
   },
   "features": {
@@ -14,7 +14,7 @@
       "messages_tab_read_only_enabled": false
     },
     "bot_user": {
-      "display_name": "d0-bot",
+      "display_name": "oss-data-analyst-bot",
       "always_online": true
     },
     "shortcuts": [

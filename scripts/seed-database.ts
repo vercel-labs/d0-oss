@@ -1,7 +1,7 @@
 import Database from "better-sqlite3";
 import { join } from "path";
 
-const dbPath = join(process.cwd(), "data", "d0.db");
+const dbPath = join(process.cwd(), "data", "oss-data-analyst.db");
 
 console.log("🌱 Seeding database with sample data...");
 
@@ -9,24 +9,105 @@ const db = new Database(dbPath);
 db.pragma("foreign_keys = ON");
 
 // Sample data arrays
-const industries = ["Technology", "Finance", "Healthcare", "Retail", "Manufacturing"];
-const countries = ["United States", "United Kingdom", "Germany", "France", "Canada"];
-const cities = ["New York", "London", "Berlin", "Paris", "Toronto", "San Francisco", "Seattle", "Boston", "Austin"];
-const departments = ["Engineering", "Sales", "Marketing", "HR", "Finance", "Operations"];
-const jobTitles = ["Engineer", "Manager", "Director", "VP", "Analyst", "Specialist", "Coordinator"];
+const industries = [
+  "Technology",
+  "Finance",
+  "Healthcare",
+  "Retail",
+  "Manufacturing",
+];
+const countries = [
+  "United States",
+  "United Kingdom",
+  "Germany",
+  "France",
+  "Canada",
+];
+const cities = [
+  "New York",
+  "London",
+  "Berlin",
+  "Paris",
+  "Toronto",
+  "San Francisco",
+  "Seattle",
+  "Boston",
+  "Austin",
+];
+const departments = [
+  "Engineering",
+  "Sales",
+  "Marketing",
+  "HR",
+  "Finance",
+  "Operations",
+];
+const jobTitles = [
+  "Engineer",
+  "Manager",
+  "Director",
+  "VP",
+  "Analyst",
+  "Specialist",
+  "Coordinator",
+];
 const accountStatuses = ["Active", "Inactive", "Suspended", "Closed"];
 const accountTypes = ["Enterprise", "Business", "Starter"];
-const firstNames = ["John", "Jane", "Michael", "Emily", "David", "Sarah", "James", "Jessica", "Robert", "Lisa",
-                     "William", "Amanda", "Richard", "Michelle", "Thomas", "Jennifer", "Charles", "Elizabeth", "Daniel", "Patricia"];
-const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
-                   "Wilson", "Anderson", "Taylor", "Thomas", "Moore", "Jackson", "Martin", "Lee", "Thompson", "White"];
+const firstNames = [
+  "John",
+  "Jane",
+  "Michael",
+  "Emily",
+  "David",
+  "Sarah",
+  "James",
+  "Jessica",
+  "Robert",
+  "Lisa",
+  "William",
+  "Amanda",
+  "Richard",
+  "Michelle",
+  "Thomas",
+  "Jennifer",
+  "Charles",
+  "Elizabeth",
+  "Daniel",
+  "Patricia",
+];
+const lastNames = [
+  "Smith",
+  "Johnson",
+  "Williams",
+  "Brown",
+  "Jones",
+  "Garcia",
+  "Miller",
+  "Davis",
+  "Rodriguez",
+  "Martinez",
+  "Wilson",
+  "Anderson",
+  "Taylor",
+  "Thomas",
+  "Moore",
+  "Jackson",
+  "Martin",
+  "Lee",
+  "Thompson",
+  "White",
+];
 
 // Helper functions
-const randomItem = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
-const randomInt = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1)) + min;
+const randomItem = <T>(arr: T[]): T =>
+  arr[Math.floor(Math.random() * arr.length)];
+const randomInt = (min: number, max: number): number =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
 const randomDate = (start: Date, end: Date): string => {
-  const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-  return date.toISOString().split('T')[0];
+  const date = new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+  return date.toISOString().split("T")[0];
 };
 
 // Clear existing data
@@ -91,14 +172,19 @@ const insertAccount = db.prepare(`
 `);
 
 for (let i = 1; i <= 50; i++) {
-  const accountNumber = `ACC-${String(i).padStart(6, '0')}`;
+  const accountNumber = `ACC-${String(i).padStart(6, "0")}`;
   const monthlyValue = randomInt(1000, 50000);
-  const contractStartDate = randomDate(new Date(2020, 0, 1), new Date(2024, 0, 1));
+  const contractStartDate = randomDate(
+    new Date(2020, 0, 1),
+    new Date(2024, 0, 1)
+  );
   const startDate = new Date(contractStartDate);
   const endDate = new Date(startDate);
   endDate.setFullYear(endDate.getFullYear() + randomInt(1, 3));
 
-  const monthsActive = Math.floor((new Date().getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 30));
+  const monthsActive = Math.floor(
+    (new Date().getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 30)
+  );
   const totalRevenue = monthlyValue * Math.max(1, monthsActive);
 
   insertAccount.run(
@@ -110,15 +196,21 @@ for (let i = 1; i <= 50; i++) {
     monthlyValue,
     totalRevenue,
     contractStartDate,
-    endDate.toISOString().split('T')[0]
+    endDate.toISOString().split("T")[0]
   );
 }
 
 // Print statistics
 const stats = {
-  companies: db.prepare("SELECT COUNT(*) as count FROM companies").get() as { count: number },
-  people: db.prepare("SELECT COUNT(*) as count FROM people").get() as { count: number },
-  accounts: db.prepare("SELECT COUNT(*) as count FROM accounts").get() as { count: number },
+  companies: db.prepare("SELECT COUNT(*) as count FROM companies").get() as {
+    count: number;
+  },
+  people: db.prepare("SELECT COUNT(*) as count FROM people").get() as {
+    count: number;
+  },
+  accounts: db.prepare("SELECT COUNT(*) as count FROM accounts").get() as {
+    count: number;
+  },
 };
 
 console.log("\n✅ Database seeding complete!");
