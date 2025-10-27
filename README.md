@@ -26,7 +26,7 @@ oss-data-analyst is an intelligent AI agent that converts natural language quest
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/vercel/oss-data-analyst.git
+   git clone https://github.com/vercel-labs/oss-data-analyst.git
    cd oss-data-analyst
    ```
 
